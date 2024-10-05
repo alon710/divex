@@ -1,11 +1,7 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-
 import { createClient } from "@/utils/supabase/server";
 import { Provider } from "@supabase/supabase-js";
-import config from "@/utils/configuration";
 
 type AuthResponse = {
   error?: string;

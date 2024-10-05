@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 import React, { useState } from "react";
 import Header from "@/components/common/Header";
@@ -73,12 +74,14 @@ const SignInForm: React.FC = () => {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <img
-          alt="Divex"
-          src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-          className="mx-auto h-10 w-auto"
+        <Image
+          src="/logo.png"
+          alt="Logo"
+          width={80}
+          height={80}
+          className="mx-auto"
         />
-        <Header title="Sign in to your account" />
+        <Header title="Lets dive in!" />
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">

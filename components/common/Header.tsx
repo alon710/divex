@@ -4,7 +4,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ title }) => {
   return (
-    <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+    <h2 className="text-center text-2xl leading-9 tracking-tight text-gray-900">
       {title}
     </h2>
   );
