@@ -1,12 +1,19 @@
 "use client";
+import { useRouter } from "next/navigation";
 
-import React from "react";
+import React, { useState } from "react";
 import Header from "@/components/common/Header";
 import Input from "@/components/common/forms/Input";
-import ThirdPartyButton from "./ThirdPartyButton";
+import ThirdPartyButton from "@/components/auth/ThirdPartyButton";
 import { login, signup } from "@/app/auth/actions";
+import Alert from "@/components/common/Alert";
 
 const SignInForm: React.FC = () => {
+  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
   const handleGoogleClick = () => {
     console.log("Google login clicked");
   };
@@ -15,11 +22,44 @@ const SignInForm: React.FC = () => {
     console.log("GitHub login clicked");
   };
 
+  const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+
+    const response = await login(formData);
+
+    if (response.error) {
+      setError(response.error);
+    } else {
+      router.push("/profile");
+    }
+  };
+
+  const handleSignup = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+
+    const response = await signup(formData);
+
+    if (response.error) {
+      setError(response.error);
+    } else {
+    }
+  };
+
+  const handleCloseAlert = () => {
+    setError("");
+  };
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img
-          alt="Your Company"
+          alt="Divex.io"
           src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
           className="mx-auto h-10 w-auto"
         />
@@ -28,9 +68,26 @@ const SignInForm: React.FC = () => {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
         <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-          <form className="space-y-6">
-            <Input id="email" label="Email address" type="email" />
-            <Input id="password" label="Password" type="password" />
+          <div className="space-yb-8">
+            {error && (
+              <Alert message={error} onClose={handleCloseAlert} level="error" />
+            )}
+          </div>
+          <form className="space-y-6" onSubmit={handleLogin}>
+            <Input
+              id="email"
+              label="Email address"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              id="password"
+              label="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
             <div className="flex items-center justify-between">
               <div className="flex items-center">
@@ -59,19 +116,19 @@ const SignInForm: React.FC = () => {
             </div>
 
             <button
+              type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              formAction={login}
             >
               Sign in
             </button>
-            <button
-              className="flex w-full justify-center rounded-md bg-teal-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              formAction={signup}
-            >
-              Sign up
-            </button>
+            <span className="block mt-2" />
           </form>
-
+          <button
+            onClick={handleSignup}
+            className="flex w-full justify-center rounded-md bg-teal-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Sign up
+          </button>
           <div className="relative mt-10">
             <div
               aria-hidden="true"
@@ -85,7 +142,6 @@ const SignInForm: React.FC = () => {
               </span>
             </div>
           </div>
-
           <div className="mt-6 grid grid-cols-2 gap-4">
             <ThirdPartyButton
               label="Google"
