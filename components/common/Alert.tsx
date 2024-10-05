@@ -9,31 +9,32 @@ import {
 interface AlertProps {
   message: string;
   onClose: () => void;
-  level: "error" | "warning" | "success";
-  duration?: number;
-  width?: string;
+  level: "error" | "warning" | "success"; // Updated from color to level
+  duration?: number; // Duration in milliseconds
 }
 
 const Alert: React.FC<AlertProps> = ({
   message,
   onClose,
   level,
-  duration = 3000,
-  width = "300px",
+  duration = 3000, // Default duration is 3000 ms (3 seconds)
 }) => {
   const [visible, setVisible] = useState(true);
 
+  // Use effect to handle auto-hide
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false);
-      onClose();
+      onClose(); // Call the onClose prop after fading out
     }, duration);
 
     return () => clearTimeout(timer);
   }, [duration, onClose]);
 
+  // Return early if the alert is not visible
   if (!visible) return null;
 
+  // Mapping levels to class names
   const levelClasses = {
     error: {
       background: "bg-red-50",
@@ -67,10 +68,7 @@ const Alert: React.FC<AlertProps> = ({
         visible ? "opacity-100" : "opacity-0"
       }`}
     >
-      <div
-        className={`${background} rounded-md p-4 shadow-lg`}
-        style={{ width }}
-      >
+      <div className={`${background} rounded-md p-4 shadow-lg max-w-xs w-full`}>
         <div className="flex">
           <div className="flex-shrink-0">
             {level === "error" ? (
@@ -90,7 +88,7 @@ const Alert: React.FC<AlertProps> = ({
               />
             )}
           </div>
-          <div className="ml-3">
+          <div className="ml-3 flex-1">
             <p className={`text-sm font-medium ${text}`}>{message}</p>
           </div>
           <div className="ml-auto pl-3">
