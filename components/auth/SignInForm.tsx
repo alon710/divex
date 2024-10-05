@@ -12,6 +12,7 @@ const SignInForm: React.FC = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alert, setAlert] = useState("");
   const [email, setEmail] = useState("");
+  const [alertType, setAlertType] = useState("error");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
@@ -32,6 +33,7 @@ const SignInForm: React.FC = () => {
     const response = await login(formData);
 
     if (response.error) {
+      setAlertType("error");
       setAlert(response.error);
       setShowAlert(true);
     } else {
@@ -50,6 +52,9 @@ const SignInForm: React.FC = () => {
     if (response.error) {
       setShowAlert(true);
     } else {
+      setAlertType("success");
+      setAlert("Account created successfully. Please confirm your email.");
+      setShowAlert(true);
     }
   };
 
@@ -61,7 +66,7 @@ const SignInForm: React.FC = () => {
     <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img
-          alt="Divex.io"
+          alt="Divex"
           src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
           className="mx-auto h-10 w-auto"
         />
@@ -72,7 +77,11 @@ const SignInForm: React.FC = () => {
         <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
           <div className="space-yb-8">
             {showAlert && (
-              <Alert message={alert} onClose={handleCloseAlert} level="error" />
+              <Alert
+                message={alert}
+                onClose={handleCloseAlert}
+                type={alertType as "error" | "success"}
+              />
             )}
           </div>
           <form className="space-y-6" onSubmit={handleLogin}>

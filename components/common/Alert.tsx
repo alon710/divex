@@ -9,33 +9,30 @@ import {
 interface AlertProps {
   message: string;
   onClose: () => void;
-  level: "error" | "warning" | "success"; // Updated from color to level
-  duration?: number; // Duration in milliseconds
+  type: "error" | "warning" | "success";
+  duration?: number;
 }
 
 const Alert: React.FC<AlertProps> = ({
   message,
   onClose,
-  level,
-  duration = 3000, // Default duration is 3000 ms (3 seconds)
+  type,
+  duration = 3000,
 }) => {
   const [visible, setVisible] = useState(true);
 
-  // Use effect to handle auto-hide
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false);
-      onClose(); // Call the onClose prop after fading out
+      onClose();
     }, duration);
 
     return () => clearTimeout(timer);
   }, [duration, onClose]);
 
-  // Return early if the alert is not visible
   if (!visible) return null;
 
-  // Mapping levels to class names
-  const levelClasses = {
+  const typeClasses = {
     error: {
       background: "bg-red-50",
       text: "text-red-800",
@@ -59,8 +56,7 @@ const Alert: React.FC<AlertProps> = ({
     },
   };
 
-  const { background, text, icon, button, focusRingOffset } =
-    levelClasses[level];
+  const { background, text, icon, button, focusRingOffset } = typeClasses[type];
 
   return (
     <div
@@ -71,12 +67,12 @@ const Alert: React.FC<AlertProps> = ({
       <div className={`${background} rounded-md p-4 shadow-lg max-w-xs w-full`}>
         <div className="flex">
           <div className="flex-shrink-0">
-            {level === "error" ? (
+            {type === "error" ? (
               <ExclamationTriangleIcon
                 aria-hidden="true"
                 className={`h-5 w-5 ${icon}`}
               />
-            ) : level === "success" ? (
+            ) : type === "success" ? (
               <CheckCircleIcon
                 aria-hidden="true"
                 className={`h-5 w-5 ${icon}`}
