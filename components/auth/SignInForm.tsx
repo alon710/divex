@@ -3,8 +3,8 @@
 import React from "react";
 import Header from "@/components/common/Header";
 import Input from "@/components/common/forms/Input";
-import Button from "@/components/common/Button";
 import ThirdPartyButton from "./ThirdPartyButton";
+import { login, signup } from "@/app/auth/actions";
 
 const SignInForm: React.FC = () => {
   const handleGoogleClick = () => {
@@ -28,7 +28,7 @@ const SignInForm: React.FC = () => {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
         <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-          <form action="#" method="POST" className="space-y-6">
+          <form className="space-y-6">
             <Input id="email" label="Email address" type="email" />
             <Input id="password" label="Password" type="password" />
 
@@ -58,7 +58,18 @@ const SignInForm: React.FC = () => {
               </div>
             </div>
 
-            <Button label="Sign in" />
+            <button
+              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              formAction={login}
+            >
+              Sign in
+            </button>
+            <button
+              className="flex w-full justify-center rounded-md bg-teal-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              formAction={signup}
+            >
+              Sign up
+            </button>
           </form>
 
           <div className="relative mt-10">
