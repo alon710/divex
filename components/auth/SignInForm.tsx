@@ -9,7 +9,8 @@ import { login, signup } from "@/app/auth/actions";
 import Alert from "@/components/common/Alert";
 
 const SignInForm: React.FC = () => {
-  const [error, setError] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alert, setAlert] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -31,7 +32,8 @@ const SignInForm: React.FC = () => {
     const response = await login(formData);
 
     if (response.error) {
-      setError(response.error);
+      setAlert(response.error);
+      setShowAlert(true);
     } else {
       router.push("/profile");
     }
@@ -46,13 +48,13 @@ const SignInForm: React.FC = () => {
     const response = await signup(formData);
 
     if (response.error) {
-      setError(response.error);
+      setShowAlert(true);
     } else {
     }
   };
 
   const handleCloseAlert = () => {
-    setError("");
+    setShowAlert(false);
   };
 
   return (
@@ -69,8 +71,8 @@ const SignInForm: React.FC = () => {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
         <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
           <div className="space-yb-8">
-            {error && (
-              <Alert message={error} onClose={handleCloseAlert} level="error" />
+            {showAlert && (
+              <Alert message={alert} onClose={handleCloseAlert} level="error" />
             )}
           </div>
           <form className="space-y-6" onSubmit={handleLogin}>
