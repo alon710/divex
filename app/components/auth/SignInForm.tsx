@@ -1,0 +1,117 @@
+"use client";
+
+import React from "react";
+import Header from "@/app/components/auth/Header";
+import Input from "@/app/components/common/forms/Input";
+import Button from "@/app/components/common/Button";
+import ThirdPartyButton from "./ThirdPartyButton";
+
+const SignInForm: React.FC = () => {
+  const handleGoogleClick = () => {
+    console.log("Google login clicked");
+  };
+
+  const handleGitHubClick = () => {
+    console.log("GitHub login clicked");
+  };
+
+  return (
+    <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <img
+          alt="Your Company"
+          src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+          className="mx-auto h-10 w-auto"
+        />
+        <Header title="Sign in to your account" />
+      </div>
+
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+        <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+          <form action="#" method="POST" className="space-y-6">
+            <Input id="email" label="Email address" type="email" />
+            <Input id="password" label="Password" type="password" />
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <input
+                  id="remember-me"
+                  name="remember-me"
+                  type="checkbox"
+                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                />
+                <label
+                  htmlFor="remember-me"
+                  className="ml-3 block text-sm leading-6 text-gray-900"
+                >
+                  Remember me
+                </label>
+              </div>
+
+              <div className="text-sm leading-6">
+                <a
+                  href="#"
+                  className="font-semibold text-indigo-600 hover:text-indigo-500"
+                >
+                  Forgot password?
+                </a>
+              </div>
+            </div>
+
+            <Button label="Sign in" />
+          </form>
+
+          <div className="relative mt-10">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 flex items-center"
+            >
+              <div className="w-full border-t border-gray-200" />
+            </div>
+            <div className="relative flex justify-center text-sm font-medium leading-6">
+              <span className="bg-white px-6 text-gray-900">
+                Or continue with
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-6 grid grid-cols-2 gap-4">
+            <ThirdPartyButton
+              label="Google"
+              icon={
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
+                  <path
+                    d="M12.0003 4.75C13.7703 4.75 15.3553 5.36002 16.6053 6.54998L20.0303 3.125C17.9502 1.19 15.2353 0 12.0003 0C7.31028 0 3.25527 2.69 1.28027 6.60998L5.27028 9.70498C6.21525 6.86002 8.87028 4.75 12.0003 4.75Z"
+                    fill="#EA4335"
+                  />
+                  <path
+                    d="M23.49 12.275C23.49 11.49 23.415 10.73 23.3 10H12V14.51H18.47C18.18 15.99 17.34 17.25 16.08 18.1L19.945 21.1C22.2 19.01 23.49 15.92 23.49 12.275Z"
+                    fill="#4285F4"
+                  />
+                </svg>
+              }
+              onClick={handleGoogleClick}
+            />
+
+            <ThirdPartyButton
+              label="GitHub"
+              icon={
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                  className="h-5 w-5 fill-[#24292F]"
+                >
+                  <path d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.628.07-.615.07-.615 1.004.071 1.532 1.032 1.532 1.032.893 1.537 2.341 1.093 2.911.835.091-.662.35-1.093.636-1.345-2.22-.253-4.555-1.11-4.555-4.943 0-1.092.39-1.984 1.029-2.688-.103-.254-.446-1.275.098-2.656 0 0 .84-.27 2.75 1.025a9.552 9.552 0 015.002 0c1.91-1.296 2.75-1.025 2.75-1.025.545 1.381.202 2.402.099 2.656.64.704 1.028 1.596 1.028 2.688 0 3.848-2.34 4.694-4.57 4.942.36.31.68.923.68 1.86 0 1.343-.012 2.424-.012 2.753 0 .268.18.58.688.482A10.014 10.014 0 0020 10.017C20 4.484 15.523 0 10 0z" />
+                </svg>
+              }
+              onClick={handleGitHubClick}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SignInForm;
