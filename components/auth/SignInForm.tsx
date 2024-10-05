@@ -28,8 +28,7 @@ const SignInForm: React.FC = () => {
     }
   };
 
-  const handleGoogleSignIn = async (event: React.FormEvent) => {
-    event.preventDefault();
+  const handleGoogleSignIn = async () => {
     await handleOAuthSignIn("google");
   };
 
