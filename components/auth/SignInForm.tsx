@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Header from "@/components/common/Header";
 import Input from "@/components/common/forms/Input";
-import ThirdPartyButton from "@/components/auth/ThirdPartyButton";
 import { login, signup, signInWithOAuth } from "@/app/auth/actions";
 import Alert from "@/components/common/Alert";
 import { Provider } from "@supabase/supabase-js";
