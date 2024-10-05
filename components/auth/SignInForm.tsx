@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import Header from "@/app/components/auth/Header";
-import Input from "@/app/components/common/forms/Input";
-import Button from "@/app/components/common/Button";
+import Header from "@/components/common/Header";
+import Input from "@/components/common/forms/Input";
+import Button from "@/components/common/Button";
 import ThirdPartyButton from "./ThirdPartyButton";
 
 const SignInForm: React.FC = () => {
