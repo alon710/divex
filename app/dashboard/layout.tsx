@@ -164,7 +164,14 @@ export default function DashboardLayout({
         <DrawerOverlay onClick={() => setIsMobileMenuOpen(false)} />
         <DrawerContent>
           <div className="flex items-center justify-between p-4 border-b">
-            <h2 className="text-lg font-semibold">Menu</h2>
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-2 text-lg font-semibold md:text-base"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <Fish className="h-6 w-6" />
+              <span className="sr-only">Divex</span>
+            </Link>
             <Button
               variant="ghost"
               size="icon"
@@ -175,14 +182,6 @@ export default function DashboardLayout({
             </Button>
           </div>
           <nav className="flex flex-col gap-6 text-lg font-medium p-4">
-            <Link
-              href="/dashboard"
-              className="flex items-center gap-2 text-lg font-semibold md:text-base"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <Fish className="h-6 w-6" />
-              <span className="sr-only">Divex</span>
-            </Link>
             {Object.entries(links).map(([href, { label }]) => (
               <Link
                 key={href}
