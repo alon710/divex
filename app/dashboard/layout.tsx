@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { CircleUser, Search, Package2, Menu, X, Sun, Moon } from "lucide-react";
+import { CircleUser, Search, Fish, Menu, X, Sun, Moon } from "lucide-react";
 import { Drawer, DrawerOverlay, DrawerContent } from "@/components/ui/drawer";
 import {
   DropdownMenu,
@@ -114,7 +114,7 @@ export default function DashboardLayout({
             href="/dashboard"
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
           >
-            <Package2 className="h-6 w-6" />
+            <Fish className="h-6 w-6" />
             <span className="sr-only">Divex</span>
           </Link>
           {Object.entries(links).map(([href, { label }]) => (
@@ -180,7 +180,7 @@ export default function DashboardLayout({
               className="flex items-center gap-2 text-lg font-semibold md:text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <Package2 className="h-6 w-6" />
+              <Fish className="h-6 w-6" />
               <span className="sr-only">Divex</span>
             </Link>
             {Object.entries(links).map(([href, { label }]) => (
