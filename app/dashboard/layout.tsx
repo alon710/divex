@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { CircleUser, Search, Package2, Menu, X } from "lucide-react";
+import { CircleUser, Search, Package2, Menu, X, Sun, Moon } from "lucide-react";
 import { Drawer, DrawerOverlay, DrawerContent } from "@/components/ui/drawer";
 import {
   DropdownMenu,
@@ -147,7 +147,11 @@ export default function DashboardLayout({
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem
+                onSelect={() => document.body.classList.toggle("dark")}
+              >
+                Change Theme
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
