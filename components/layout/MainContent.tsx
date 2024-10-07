@@ -14,7 +14,7 @@ export default function MainContent({
   sideLinks,
 }: MainContentProps) {
   const pageLabel =
-    links?.[currentPath?.split("/").slice(0, 3).join("/")].label;
+    links?.[currentPath?.split("/").slice(0, 3).join("/")]?.label;
   return (
     <div className="mx-auto grid w-full max-w-6xl items-start gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[250px_1fr]">
       {sideLinks && (
