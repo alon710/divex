@@ -4,8 +4,10 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { CircleUser, Search, Fish, Menu, X } from "lucide-react";
+import { CircleUser, Search, Menu, X } from "lucide-react";
 import { Drawer, DrawerOverlay, DrawerContent } from "@/components/ui/drawer";
+import Image from "next/image";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -114,13 +116,7 @@ export default function DashboardLayout({
           <span className="sr-only">Toggle mobile menu</span>
         </Button>
         <nav className="hidden md:flex flex-col gap-6 text-lg font-medium md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-          <Link
-            href="/dashboard"
-            className="flex items-center gap-2 text-lg font-semibold md:text-base"
-          >
-            <Fish className="h-6 w-6" />
-            <span className="sr-only">Divex</span>
-          </Link>
+          <Image src="/logo/512px.png" alt="Divex" width={24} height={24} />
           {Object.entries(links).map(([href, { label }]) => (
             <Link key={href} href={href} className={getLinkClassName(href)}>
               {label}
@@ -173,7 +169,13 @@ export default function DashboardLayout({
               className="flex items-center gap-2 text-lg font-semibold md:text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <Fish className="h-6 w-6" />
+              <Image
+                src="/logo/512px.png"
+                alt="Divex"
+                width={24}
+                height={24}
+                className="rounded-full"
+              />
               <span className="sr-only">Divex</span>
             </Link>
             <Button

@@ -1,7 +1,3 @@
 export default function DashboardOverview() {
-  return (
-    <>
-      <h1>Dashboard Overview</h1>
-    </>
-  );
+  return <h1>Dashboard Overview</h1>;
 }
