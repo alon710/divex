@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CircleUser, Search, Menu, X } from "lucide-react";
 import { Drawer, DrawerOverlay, DrawerContent } from "@/components/ui/drawer";
+import { SiteFooter } from "@/components/ui/footer";
 import Image from "next/image";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,20 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Card, CardDescription, CardFooter } from "@/components/ui/card";
-
-type SideLinks = {
-  [key: string]: string;
-};
-
-type TopLink = {
-  label: string;
-  sideLinks?: SideLinks;
-  defaultRedirect?: string;
-};
-
-type Links = {
-  [key: string]: TopLink;
-};
+import { links } from "@/config/menu";
 
 export default function DashboardLayout({
   children,
@@ -43,44 +30,14 @@ export default function DashboardLayout({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const getLinkClassName = (href: string) => {
-    return currentPath.startsWith(href)
+    return currentPath?.startsWith(href)
       ? "text-foreground transition-colors hover:text-foreground font-semibold"
       : "text-muted-foreground transition-colors hover:text-foreground";
   };
 
-  const links: Links = useMemo(
-    () => ({
-      "/dashboard/home": {
-        label: "Dashboard",
-        sideLinks: {
-          "/dashboard/home/overview": "Overview",
-          "/dashboard/home/analytics": "Analytics",
-        },
-        defaultRedirect: "/dashboard/home/overview",
-      },
-      "/dashboard/customers": {
-        label: "Customers",
-        sideLinks: {
-          "/dashboard/customers/customers-list": "Customers List",
-          "/dashboard/customers/add-customer": "Add Customer",
-        },
-        defaultRedirect: "/dashboard/customers/customers-list",
-      },
-      "/dashboard/settings": {
-        label: "Settings",
-        sideLinks: {
-          "/dashboard/settings/general": "General",
-          "/dashboard/settings/landing-page": "Landing Page",
-        },
-        defaultRedirect: "/dashboard/settings/general",
-      },
-    }),
-    []
-  );
-
   const getCurrentSideLinks = () => {
     return Object.entries(links).find(
-      ([href, link]) => currentPath.startsWith(href) && link.sideLinks
+      ([href, link]) => currentPath?.startsWith(href) && link.sideLinks
     )?.[1].sideLinks;
   };
 
@@ -93,7 +50,7 @@ export default function DashboardLayout({
     if (topLink && topLink[1].defaultRedirect) {
       router.replace(topLink[1].defaultRedirect);
     }
-  }, [currentPath, router, links]);
+  }, [currentPath, router]);
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -206,7 +163,7 @@ export default function DashboardLayout({
       <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10">
         <div className="mx-auto grid w-full max-w-6xl gap-2">
           <h1 className="text-3xl font-semibold">
-            {links[currentPath.split("/").slice(0, 3).join("/")]?.label}
+            {links[currentPath?.split("/").slice(0, 3).join("/")]?.label}
           </h1>
         </div>
         <div className="mx-auto grid w-full max-w-6xl items-start gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[250px_1fr]">
@@ -229,7 +186,7 @@ export default function DashboardLayout({
               </div>
               <CardFooter className="border-t px-6 py-4">
                 <div className="text-sm text-muted-foreground">
-                  {links?.[currentPath.split("/").slice(0, 3).join("/")]
+                  {links?.[currentPath?.split("/").slice(0, 3).join("/")]
                     ?.label +
                     " > " +
                     sideLinks?.[currentPath]}
@@ -238,6 +195,7 @@ export default function DashboardLayout({
             </Card>
           </div>
         </div>
+        <SiteFooter />
       </main>
     </div>
   );
