@@ -15,6 +15,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 type SideLinks = {
   [key: string]: string;
@@ -216,7 +224,21 @@ export default function DashboardLayout({
           )}
 
           {/* Main Content Area */}
-          <div className="grid gap-6">{children}</div>
+          <div className="grid gap-6">
+            <Card>
+              <div className="p-6">
+                <CardDescription>{children}</CardDescription>
+              </div>
+              <CardFooter className="border-t px-6 py-4">
+                <div className="text-sm text-muted-foreground">
+                  {links?.[currentPath.split("/").slice(0, 3).join("/")]
+                    ?.label +
+                    " > " +
+                    sideLinks?.[currentPath]}
+                </div>
+              </CardFooter>
+            </Card>
+          </div>
         </div>
       </main>
     </div>

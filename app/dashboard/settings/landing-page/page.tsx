@@ -13,7 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 export default function LandingPageAdminSettingsPage() {
   return (
     <>
-      <Card>
+      <Card className="py-8">
         <CardHeader>
           <CardTitle>Landing Page</CardTitle>
           <CardDescription>
