@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { CircleUser, Search, Fish, Menu, X, Sun, Moon } from "lucide-react";
+import { CircleUser, Search, Fish, Menu, X } from "lucide-react";
 import { Drawer, DrawerOverlay, DrawerContent } from "@/components/ui/drawer";
 import {
   DropdownMenu,
@@ -15,14 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardDescription, CardFooter } from "@/components/ui/card";
 
 type SideLinks = {
   [key: string]: string;
@@ -53,32 +46,35 @@ export default function DashboardLayout({
       : "text-muted-foreground transition-colors hover:text-foreground";
   };
 
-  const links: Links = {
-    "/dashboard/home": {
-      label: "Dashboard",
-      sideLinks: {
-        "/dashboard/home/overview": "Overview",
-        "/dashboard/home/analytics": "Analytics",
+  const links: Links = useMemo(
+    () => ({
+      "/dashboard/home": {
+        label: "Dashboard",
+        sideLinks: {
+          "/dashboard/home/overview": "Overview",
+          "/dashboard/home/analytics": "Analytics",
+        },
+        defaultRedirect: "/dashboard/home/overview",
       },
-      defaultRedirect: "/dashboard/home/overview",
-    },
-    "/dashboard/customers": {
-      label: "Customers",
-      sideLinks: {
-        "/dashboard/customers/customers-list": "Customers List",
-        "/dashboard/customers/add-customer": "Add Customer",
+      "/dashboard/customers": {
+        label: "Customers",
+        sideLinks: {
+          "/dashboard/customers/customers-list": "Customers List",
+          "/dashboard/customers/add-customer": "Add Customer",
+        },
+        defaultRedirect: "/dashboard/customers/customers-list",
       },
-      defaultRedirect: "/dashboard/customers/customers-list",
-    },
-    "/dashboard/settings": {
-      label: "Settings",
-      sideLinks: {
-        "/dashboard/settings/general": "General",
-        "/dashboard/settings/landing-page": "Landing Page",
+      "/dashboard/settings": {
+        label: "Settings",
+        sideLinks: {
+          "/dashboard/settings/general": "General",
+          "/dashboard/settings/landing-page": "Landing Page",
+        },
+        defaultRedirect: "/dashboard/settings/general",
       },
-      defaultRedirect: "/dashboard/settings/general",
-    },
-  };
+    }),
+    []
+  );
 
   const getCurrentSideLinks = () => {
     return Object.entries(links).find(
