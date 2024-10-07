@@ -7,8 +7,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "latest"
-          check-latest: true
+          node-version: "latest" # Set to always use the latest version of Node.js
+          check-latest: true # Ensure you are using the most up-to-date version that satisfies the spec
+          cache: "yarn" # Cache dependencies installed with yarn
+          cache-dependency-path: "**/yarn.lock" # Cache key will be based on yarn.lock file to reflect dependency changes
       - name: Install Dependencies
         run: npm install --global yarn && yarn install
       - name: Lint
