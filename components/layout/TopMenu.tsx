@@ -10,11 +10,11 @@ import UserMenu from "@/components/layout/UserMenu";
 import { links } from "@/config/menu";
 import { getLinkClassName } from "@/utils/link";
 
-interface HeaderProps {
+interface TopMenuProps {
   onMobileMenuOpen: () => void;
 }
 
-export default function Header({ onMobileMenuOpen }: HeaderProps) {
+export default function TopMenu({ onMobileMenuOpen }: TopMenuProps) {
   const [isHydrated, setIsHydrated] = useState(false);
   const currentPath = usePathname();
 

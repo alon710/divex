@@ -3,9 +3,9 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import MobileDrawer from "@/components/layout/MobileDrawer";
-import Header from "@/components/layout/Header";
+import TopMenu from "@/components/layout/TopMenu";
 import MainContent from "@/components/layout/MainContent";
-import { SiteFooter } from "@/components/ui/footer";
+import SiteFooter from "@/components/layout/Footer";
 import { links } from "@/config/menu";
 
 export default function DashboardLayout({
@@ -41,13 +41,12 @@ export default function DashboardLayout({
 
   return (
     <div className="flex min-h-screen w-full flex-col">
-      <Header onMobileMenuOpen={() => setIsMobileMenuOpen(true)} />
+      <TopMenu onMobileMenuOpen={() => setIsMobileMenuOpen(true)} />
       <MobileDrawer
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
       />
 
-      {/* Main Content */}
       <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10">
         {isHydrated ? (
           <MainContent currentPath={currentPath} sideLinks={sideLinks}>

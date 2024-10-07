@@ -4,11 +4,17 @@ import { getLinkClassName } from "@/utils/link";
 interface SideLinksProps {
   sideLinks: { [href: string]: string };
   currentPath: string;
+  pageLabel: string;
 }
 
-export default function side_links({ sideLinks, currentPath }: SideLinksProps) {
+export default function SideLinks({
+  sideLinks,
+  currentPath,
+  pageLabel,
+}: SideLinksProps) {
   return (
     <nav className="grid gap-4 text-sm text-muted-foreground">
+      <div className="text-lg font-semibold text-primary">{pageLabel}</div>
       {Object.entries(sideLinks).map(([href, label]) => (
         <Link
           key={href}

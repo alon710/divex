@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 
-export function SiteFooter() {
+export default function SiteFooter() {
   return (
     <footer className="fixed bottom-4 left-4 right-4">
       <Card className="bg-muted text-muted-foreground">
@@ -52,5 +52,3 @@ export function SiteFooter() {
     </footer>
   );
 }
-
-export default SiteFooter;
