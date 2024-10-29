@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { SignUpButton } from "@clerk/nextjs";
-import { ArrowRightIcon, Fish, FishIcon } from "lucide-react";
-import Link from "next/link";
+import { ArrowRightIcon } from "lucide-react";
 
 export default function HomePage() {
   return (
