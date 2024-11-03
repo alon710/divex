@@ -46,12 +46,12 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-      <footer className="container pt-16 pb-8 flex sm:flex-col gap-8 sm:gap-4 justify-between items-start">
+      <footer className="container pt-16 pb-8 flex flex-col gap-8 sm:px-14">
         <Link href="/">
           <BrandLogo />
         </Link>
-        <div className="flex flex-col sm:flex-row gap-8 ">
-          <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 text-start">
+          <div className="flex flex-col gap-16 sm:flex-row">
             {OrderedFooterLinksGroups.map((group) => (
               <FooterLinkGroup key={group.title} {...group} />
             ))}

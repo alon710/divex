@@ -26,6 +26,62 @@ const FooterLinksGroups: Record<string, FooterLinksGroup> = {
       },
     ],
   },
+  solutions: {
+    title: "Solutions",
+    links: [
+      {
+        label: "Pricing",
+        href: "/pricing",
+      },
+      {
+        label: "Features",
+        href: "/features",
+      },
+      {
+        label: "Customers",
+        href: "/customers",
+      },
+    ],
+  },
+  tools: {
+    title: "Tools",
+    links: [
+      {
+        label: "Blog",
+        href: "/blog",
+      },
+      {
+        label: "Documentation",
+        href: "/documentation",
+      },
+      {
+        label: "API",
+        href: "/api",
+      },
+    ],
+  },
+  company: {
+    title: "Company",
+    links: [
+      {
+        label: "About",
+        href: "/about",
+      },
+      {
+        label: "Careers",
+        href: "/careers",
+      },
+      {
+        label: "Press",
+        href: "/press",
+      },
+    ],
+  },
 } as const;
 
-export const OrderedFooterLinksGroups = [FooterLinksGroups.help] as const;
+export const OrderedFooterLinksGroups = [
+  FooterLinksGroups.help,
+  FooterLinksGroups.solutions,
+  FooterLinksGroups.tools,
+  FooterLinksGroups.company,
+] as const;
