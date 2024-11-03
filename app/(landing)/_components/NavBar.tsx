@@ -1,6 +1,8 @@
 import { BrandLogo } from "@/components/BrandLogo";
 import { Button } from "@/components/ui/button";
 import {
+  ClerkLoaded,
+  ClerkLoading,
   SignedIn,
   SignedOut,
   SignInButton,
@@ -18,19 +20,24 @@ export function NavBar() {
         <Link href="/features">Features</Link>
         <Link href="/#pricing">Pricing</Link>
         <Link href="/about">About</Link>
-        <SignedIn>
-          <Button>
-            <Link href="/dashboard">Dashboard</Link>
-          </Button>
-          <SignOutButton>
-            <Button>Sign Out</Button>
-          </SignOutButton>
-        </SignedIn>
-        <SignedOut>
-          <SignInButton mode="modal">
-            <Button>Sign In</Button>
-          </SignInButton>
-        </SignedOut>
+        <ClerkLoading>
+          <Button>Loading...</Button>
+        </ClerkLoading>
+        <ClerkLoaded>
+          <SignedIn>
+            <Button>
+              <Link href="/dashboard">Dashboard</Link>
+            </Button>
+            <SignOutButton>
+              <Button>Sign Out</Button>
+            </SignOutButton>
+          </SignedIn>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <Button>Sign In</Button>
+            </SignInButton>
+          </SignedOut>
+        </ClerkLoaded>
       </nav>
     </header>
   );
